@@ -37,8 +37,6 @@ public class HaridController extends HttpServlet {
         Mushkiambar mushk = optionalMushkiambar.get();
         req.setAttribute("mushk", mushk);
         try {
-            List<Harid> all = haridRepo.haridAll();
-            req.setAttribute("harids", all);
             req.getRequestDispatcher("/views/harid.jsp").forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,6 +71,6 @@ public class HaridController extends HttpServlet {
                 .build();
         haridRepo.save(harid);
 
-        resp.sendRedirect("/harid?id=" + id); // id ni qo'shish
+        resp.sendRedirect("/haridlari"); // id ni qo'shish
     }
 }

@@ -10,27 +10,12 @@
 <body>
 <div style="margin-top: 20px">
     <table>
-        <tr>
-            <th>Mushkiambar</th>
-            <th>Olish Grami</th>
-            <th>Jami Summa</th>
-            <th>Dalet</th>
-        </tr>
-        <!-- Loop through each item in 'harids' and display its properties -->
-        <c:forEach var="t" items="${harids}">
-            <tr>
-                <td>${t.getMushkiambar().getName()}</td>
-                <td>${t.getOlishGrami()}</td>
-                <td>${t.getJamiSumma()}</td>
-                <td><a href="/delett?id=${t.getId()}">Dalet</a></td>
-            </tr>
-        </c:forEach>
             <%
         Mushkiambar mush = (Mushkiambar) request.getAttribute("mushk");
         if (mush != null) {
     %>
         <div> <p>Nomi : <%= mush.getName() %>
-          : Gram narhi : <%= mush.getGramNarhi() %></p>
+          :   : Gram narhi : <%= mush.getGramNarhi() %></p>
             <%
             } else {
             %>

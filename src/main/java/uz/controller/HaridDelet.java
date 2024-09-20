@@ -23,6 +23,6 @@ import java.io.IOException;
                 return;
             }
             haridRepo.delete(id);
-            resp.sendRedirect("/harid");
+            resp.sendRedirect("/haridlari");
         }
     }

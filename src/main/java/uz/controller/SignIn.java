@@ -32,6 +32,7 @@ public class SignIn extends HttpServlet {
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
+            UserIsmi UserIsmi = new UserIsmi(user);
 
             // Check if the provided password matches
             if (user.getPassword().equals(password)) { // Replace with proper password validation
