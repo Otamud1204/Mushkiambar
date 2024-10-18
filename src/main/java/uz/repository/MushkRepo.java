@@ -31,7 +31,7 @@ public class MushkRepo {
     public List<Mushkiambar> mushkAll() {
         EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
-        List resultList = em.createNativeQuery("select * from mushkiambar", Mushkiambar.class).getResultList();
+        List resultList = em.createNativeQuery("select * from card", Mushkiambar.class).getResultList();
         em.getTransaction().commit();
         return resultList;
     }

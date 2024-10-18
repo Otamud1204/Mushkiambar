@@ -2,7 +2,6 @@ package uz.repository;
 
 import jakarta.persistence.EntityManager;
 import uz.entity.Cheka;
-import uz.entity.Mushkiambar;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +28,7 @@ private void edit(Cheka cheka) {
     em.getTransaction().commit();
 }
 
-public List<Mushkiambar> chekAll() {
+public List<Cheka> chekAll() {
     EntityManager em = entityManagerFactory.createEntityManager();
     em.getTransaction().begin();
     List resultList = em.createNativeQuery("select * from cheka", Cheka.class).getResultList();

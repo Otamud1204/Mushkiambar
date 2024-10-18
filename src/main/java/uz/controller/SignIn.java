@@ -17,6 +17,7 @@ import java.util.Optional;
 public class SignIn extends HttpServlet {
     private UserRepo userRepo = UserRepo.getInstance();
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/views/signin.jsp").forward(req, resp);
@@ -27,24 +28,23 @@ public class SignIn extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        // Retrieve user from repository
         Optional<User> optionalUser = userRepo.getUserByUsername(username);
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            UserIsmi UserIsmi = new UserIsmi(user);
 
-            // Check if the provided password matches
-            if (user.getPassword().equals(password)) { // Replace with proper password validation
+            if (user.getPassword().equals(password)) {
                 HttpSession session = req.getSession();
                 session.setAttribute("username", username);
-                session.setAttribute("role", user.getRol()); // Store the user's role in the session
+                session.setAttribute("role", user.getRol());
 
-                // Redirect based on user role
-                if (Objects.equals( "ADMIN",(user.getRol()))) {
-                    resp.sendRedirect(req.getContextPath() + "/admin"); // Admin dashboard page
+                // User obyektini UserIsmi ga qo'shamiz
+                UserIsmi.ismi().setCurrentUser(user);
+
+                if (Objects.equals("ADMIN", user.getRol())) {
+                    resp.sendRedirect(req.getContextPath() + "/admin");
                 } else {
-                    resp.sendRedirect(req.getContextPath() + "/user"); // User home page
+                    resp.sendRedirect(req.getContextPath() + "/user");
                 }
             } else {
                 req.setAttribute("error", "Invalid password.");
